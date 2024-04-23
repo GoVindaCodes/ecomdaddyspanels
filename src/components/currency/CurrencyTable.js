@@ -19,7 +19,7 @@ import requests from "services/httpService";
 
 const CurrencyTable = ({ currency, isCheck, setIsCheck }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
-  // console.log('currency', currency)
+  console.log('currency', currency)
   const { data, loading } = useAsync(CurrencyServices.getAllCurrency);
 
   const handleClick = (e) => {
@@ -30,21 +30,21 @@ const CurrencyTable = ({ currency, isCheck, setIsCheck }) => {
       setIsCheck(isCheck.filter((item) => item !== id));
     }
   };
-  const [coupons, setCoupons] = useState([]);
-  // console.log("allID : ", allId)
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        console.log("Fetching currencies...");
-        const response = await requests.get('/api/currency');
-        console.log("currencies fetched successfully from  the tables:", response);
-        setCoupons(response);
-      } catch (error) {
-        console.error('Error fetching languages:', error);
-      }
-    };
-    fetchLanguages();
-  }, []);
+  // const [coupons, setCoupons] = useState([]);
+  // // console.log("allID : ", allId)
+  // useEffect(() => {
+  //   const fetchLanguages = async () => {
+  //     try {
+  //       console.log("Fetching currencies...");
+  //       const response = await requests.get('/api/currency');
+  //       console.log("currencies fetched successfully from  the tables:", response);
+  //       setCoupons(response);
+  //     } catch (error) {
+  //       console.error('Error fetching languages:', error);
+  //     }
+  //   };
+  //   fetchLanguages();
+  // }, []);
   return (
     <>
       {isCheck.length < 1 && <DeleteModal id={serviceId} title={title} />}

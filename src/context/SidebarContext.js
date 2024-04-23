@@ -10,7 +10,7 @@ export const SidebarProvider = ({ children }) => {
   const searchRef = useRef("");
   const invoiceRef = useRef("");
 
-  const [limitData, setLimitData] = useState(20);
+  const [limitData, setLimitData] = useState(50);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBulkDrawerOpen, setIsBulkDrawerOpen] = useState(false);

@@ -48,18 +48,18 @@ const CategoryTable = ({
   //   console.log("data : ", child.name[0]);
   // });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("Fetching languages... Table");
-        const response = await requests.get('/api/category/all');
-        // console.log("Categories fetched successfully from table:", response);
-      } catch (error) {
-        console.error('Error fetching languages:', error);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       console.log("Fetching languages... Table");
+  //       const response = await requests.get('/api/category/all');
+  //       // console.log("Categories fetched successfully from table:", response);
+  //     } catch (error) {
+  //       console.error('Error fetching languages:', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -74,7 +74,7 @@ const CategoryTable = ({
       </MainDrawer>
 
       <TableBody>
-        {data?.map((category) => (
+        {categories?.map((category) => (
           <TableRow key={category._id}>
             <TableCell>
               <CheckBox

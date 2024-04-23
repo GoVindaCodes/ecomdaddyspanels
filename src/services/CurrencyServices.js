@@ -117,7 +117,8 @@ const CurrencyServices = {
     return requests.get('/api/currency');
   },
 
-  getShowingCurrency: async () => {
+  getShowingCurrency: async (data) => {
+    // console.log("datas :", data)
     return requests.get('/api/currency/show');
   },
 

@@ -115,27 +115,49 @@ const useProductSubmit = (id) => {
         const randomPart = Math.random().toString(36).substr(2, 9);
         return timestamp + randomPart;
       };
+      // const productData = {
+      //   // productId: productId,
+      //   // _id: data._id,
+      //   _id: generateCustomId(),
+      //   sku: data.sku || "",
+      //   barcode: data.barcode || "",
+      //   title: data.title,
+      //   description: data.description,
+      //   slug: data.slug,
+      //   // both category and categories have replaced each others values
+      //   // categories: data.parent,
+      //   category: data.parent,
+      //   categories: defaultCategory[0]._id,
+      //   quantity: data.quantity,
+      //   flashsale: data.flashsale,
+      //   barcode: data.barcode,
+      //   image: data.imageUrl,
+      //   stock: data.stock,
+      //   tag: Array.isArray(data.tag) ? data.tag : [],
+      //   price: data.price || 0,
+      //   originalPrice: data.originalPrice || 0,
+      //   variants: isCombination ? updatedVariants : [],
+      // };
+
       const productData = {
-        // productId: productId,
-        // _id: data._id,
         _id: generateCustomId(),
         sku: data.sku || "",
         barcode: data.barcode || "",
         title: data.title,
         description: data.description,
         slug: data.slug,
-        categories: data.parent,
-        category: defaultCategory[0]._id,
+        category: data.parent, // replaced categories with category
+        categories: defaultCategory[0]._id,
         quantity: data.quantity,
-        flashsale: data.flashsale,
-        barcode: data.barcode,
-        image: data.imageUrl,
-        stock: data.stock,
+        flashsale: data.flashSale, // corrected flashsale to flashSale
+        image: data.image, // corrected imageUrl to image
+        stock: data.quantity, // Assuming stock should be same as quantity
         tag: Array.isArray(data.tag) ? data.tag : [],
         price: data.price || 0,
         originalPrice: data.originalPrice || 0,
-        variants: isCombination ? updatedVariants : [],
+        variants: isCombination ? updatedVariants : [], // Assuming isCombination and updatedVariants are defined elsewhere
       };
+
 
       // const productData = {
       //   productId: productId,
@@ -192,7 +214,7 @@ const useProductSubmit = (id) => {
         }
       } else {
         const res = await ProductServices.addProduct(productData);
-        // console.log("res is ", res);
+        console.log("res is ", res);
         if (isCombination) {
           setUpdatedId(res._id);
           setValue("title", res.title[language ? language : "en"]);
@@ -270,7 +292,7 @@ const useProductSubmit = (id) => {
       setValue("productId");
 
       setProductId("");
-      // setValue('show');
+      setValue('show');
       setImageUrl([]);
       setTag([]);
       setVariants([]);
@@ -278,7 +300,7 @@ const useProductSubmit = (id) => {
       setValues({});
       setTotalStock(0);
       setSelectedCategory([]);
-      // setDefaultCategory([]);
+      setDefaultCategory([]);
       if (location.pathname === "/products") {
         resetRefTwo?.current?.resetSelectedValues();
       }
@@ -312,7 +334,7 @@ const useProductSubmit = (id) => {
         try {
           const res = await ProductServices.getProductById(id);
 
-          // console.log("res", res);
+          console.log("res", res);
 
           if (res) {
             setResData(res);
